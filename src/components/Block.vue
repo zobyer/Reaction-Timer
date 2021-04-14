@@ -1,12 +1,31 @@
 <template>
-  <div class="block">
+  <div class="block" v-if="showBlock">
       Block Element
   </div>
 </template>
 
 <script>
+import { onUpdated } from 'vue'
 export default {
-    props:['delay']
+    props:['delay'],
+    data(){
+        return {
+            showBlock: false
+        }
+    },
+    mounted(){
+        console.log('block mounted')
+        setTimeout(() =>{
+            this.showBlock = true
+            console.log(this.delay)
+        },this.delay)
+    },
+    updated(){
+        console.log("value updated")
+    },
+    unmounted(){
+      console.log("Unmounted")  
+    }
 }
 </script>
 
